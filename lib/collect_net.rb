@@ -1,5 +1,11 @@
 require "collect_net/version"
-require "collect_net/v"
+require "mechanize"
+require "nokogiri"
+require "open-uri"
+
+require "collect_net/yandex"
+require "collect_net/google_vn"
+require "collect_net/lycos"
 
 
 module CollectNet
