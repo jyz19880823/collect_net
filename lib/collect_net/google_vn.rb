@@ -12,8 +12,7 @@ class SpiderVn
             vars = ""
             doc.search('li.g').each do |content|
                 content.search('h3 a').each do |a|
-                    para = rand(800)
-                    vars << '<li class="byli"><h5><a href="' + para.to_s + '.php" title="' + a.content + '">' + a.content + '</a></h5>'
+                    vars << '<li class="byli"><h5><a href="#" title="' + a.content + '">' + a.content + '</a></h5>'
                     vars << "\n"
                 end
                 content.search('.st').each do |p|
@@ -39,10 +38,11 @@ def google_vn(keyword_list="keyword",sleep_time=nil)
         line = line.chop
         newspider = SpiderVn.new
         newhtml = newspider.html(line)
-        newhtml.gsub!(/metso|sandvik|terex|shanbao|sbm|shibang|liming|zenith/i,"Zenith")
-        newhtml.gsub!(/[\w]+@[\w]+.(com|net|org|cn)/,"")
-        newhtml.gsub!(/[\d]{5,12}/,"")
-        newhtml.gsub!(/'/,"")
+        newhtml.filter_word
+        # newhtml.gsub!(/metso|sandvik|terex|shanbao|sbm|shibang|liming|zenith/i,"Zenith")
+        # newhtml.gsub!(/[\w]+@[\w]+.(com|net|org|cn)/,"")
+        # newhtml.gsub!(/[\d]{5,12}/,"")
+        # newhtml.gsub!(/'/,"")
 
         Post.create(:name=>line,:content=>newhtml,:title=>"")
 

@@ -10,8 +10,7 @@ class SpiderYandex
         doc.css('.b-serp2-item').each do |content|
             temp= ""
             content.css('h2 a').each do |a|
-                para = rand(800)
-                temp << '<li class="byli" ><h5><a href="' + para.to_s + '.php" title="' + a.content + '">' + a.content + '</a></h5>'
+                temp << '<li class="byli" ><h5><a href="#" title="' + a.content + '">' + a.content + '</a></h5>'
                 temp << "\n"
             end
             content.css('.b-serp2-item__text').each do |p|
@@ -41,23 +40,13 @@ def yandex(keyword_list="keyword",sleep_time=nil)
         line = line.chop
         newspider = SpiderYandex.new
         newhtml = newspider.html(line)
-        newhtml.gsub!(/metso|sandvik|terex|shanbao|sbm|shibang|liming|zenith/i,"Zenith")
-        newhtml.gsub!(/[\w]+@[\w]+.(com|net|org|cn)/,"")
-        newhtml.gsub!(/[\d]{5,12}/,"")
-        newhtml.gsub!(/'/,"")
-        # newhtml = "<?php $title='" + line + "'; $content='" + "<ul class=\"byul\">" + newhtml + "</ul>" +"'; include('head.php'); include('foot.php'); ?>"
-        # line2 = line.split.join("-")
+        newhtml.filter_word
+        # newhtml.gsub!(/metso|sandvik|terex|shanbao|sbm|shibang|liming|zenith/i,"Zenith")
+        # newhtml.gsub!(/[\w]+@[\w]+.(com|net|org|cn)/,"")
+        # newhtml.gsub!(/[\d]{5,12}/,"")
+        # newhtml.gsub!(/'/,"")
 
-        # fh = File.open("ru/"+p.to_s+".php","w")
-        # fh.puts(newhtml)
-        # fh.close
-
-        title_output = '$_' + p.to_s + '= "'+ line +'";'
-        # fi = File.open("ru/title_russia.php","a")
-        # fi.puts(title_output)
-        # fi.close### output the titile
         Post.create(:name=>line,:content=>newhtml,:title=>"")
-
 
         complete_level = 'name -> ( ' + line + ' ) ; ' + 'row -> ' + position.to_s + ';'
         return complete_level
