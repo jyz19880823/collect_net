@@ -25,7 +25,7 @@ class SpiderBing
 end
 
 def bing(keyword_list="keyword",sleep_time=nil)
-    
+
     position=1
     IO.foreach(keyword_list) do |line|
         line = line.chop
@@ -38,13 +38,14 @@ def bing(keyword_list="keyword",sleep_time=nil)
         # newhtml.gsub!(/'/,"")
 
         Post.create(:name=>line,:content=>newhtml,:title=>"")
-    end
 
-    complete_level = 'name -> ( ' + line + ' ) ; ' + 'row -> ' + position.to_s + ';'
-    return complete_level
-    position = position.succ
 
-    if sleep_time
-        sleep(sleep_time)
+        complete_level = 'name -> ( ' + line + ' ) ; ' + 'row -> ' + position.to_s + ';'
+        return complete_level
+        position = position.succ
+
+        if sleep_time
+            sleep(sleep_time)
+        end
     end
 end
