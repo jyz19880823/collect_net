@@ -7,9 +7,9 @@ require "collect_net/yandex"
 require "collect_net/google_vn"
 require "collect_net/lycos"
 require "collect_net/bing"
+require "collect_net/sitemap.rb"
 
 module CollectNet
-
 end
 
 class String
