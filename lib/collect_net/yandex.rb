@@ -49,7 +49,7 @@ def yandex(keyword_list="keyword",sleep_time=nil)
         Post.create(:name=>line,:content=>newhtml,:title=>"")
 
         complete_level = 'name -> ( ' + line + ' ) ; ' + 'row -> ' + position.to_s + ';'
-        p complete_level
+        puts complete_level
         position = position.succ
 
         if sleep_time
