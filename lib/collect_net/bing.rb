@@ -28,7 +28,7 @@ end
 
 def bing(keyword_list="keyword",sleep_time=nil)
 
-    position=1
+    # position=1
     IO.foreach(keyword_list) do |line|
         line = line.chop
         newspider = SpiderBing.new
@@ -42,9 +42,9 @@ def bing(keyword_list="keyword",sleep_time=nil)
         Post.create(:name=>line,:content=>newhtml,:title=>"")
 
 
-        complete_level = 'name -> ( ' + line + ' ) ; ' + 'row -> ' + position.to_s + ';'
-        return complete_level
-        position = position.succ
+        # complete_level = 'name -> ( ' + line + ' ) ; ' + 'row -> ' + position.to_s + ';'
+        # return complete_level
+        # position = position.succ
 
         if sleep_time
             sleep(sleep_time)
