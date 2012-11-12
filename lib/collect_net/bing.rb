@@ -1,7 +1,9 @@
 class SpiderBing
     def main(page,keyword)
         @keyword = keyword
-        doc = Nokogiri::HTML(open("http://www.bing.com/search?q=#{@keyword}&qs=n&sc=0-0&sp=-1&sk=&first=#{page}&FORM=PERE1"))
+        url = "http://www.bing.com/search?q=#{@keyword}&qs=n&sc=0-0&sp=-1&sk=&first=#{page}&FORM=PERE1"
+        url = URI.escape(url)
+        doc = Nokogiri::HTML(open(url))
         vars = ""
         doc.css('li.sa_wr').each do |content|
             content.css('h3 a').each do |a|
