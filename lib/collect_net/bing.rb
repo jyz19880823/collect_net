@@ -25,6 +25,7 @@ class SpiderBing
 end
 
 def bing(keyword_list="keyword",sleep_time=nil)
+    
     position=1
     IO.foreach(keyword_list) do |line|
         line = line.chop
