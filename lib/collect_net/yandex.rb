@@ -27,7 +27,7 @@ class SpiderYandex
     end
 
     def html(keyword)
-        y = 0.upto(2).collect {|x| x}
+        y = 1.upto(2).collect {|x| x}
         return y.collect {|x| main(x,keyword)}.join(" ")
     end
 
